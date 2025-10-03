@@ -1,16 +1,39 @@
-# admin_abzenzee
+# 📌 Absensi Admin App – v2  
 
-A new Flutter project.
+Aplikasi **Admin Absensi** versi 2 adalah aplikasi mobile berbasis **Flutter** yang digunakan untuk memantau dan mengelola data presensi karyawan.  
+Versi ini hadir dengan **penyegaran tampilan UI** dan mulai mengadopsi penggunaan **UI library (Forui)** untuk mempercepat pengembangan serta meningkatkan konsistensi desain.  
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## ✨ Fitur Utama  
 
-A few resources to get you started if this is your first Flutter project:
+- 🔑 **Autentikasi Admin**  
+  Login menggunakan akun admin.  
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- 👨‍💼 **Manajemen Data Presensi**  
+  - Melihat daftar kehadiran user.  
+  - Filter data berdasarkan tanggal / jenis absensi.  
+  - Export laporan dalam format **PDF**.  
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- 📊 **Dashboard Monitoring**  
+  - Statistik kehadiran.  
+  - Ringkasan absensi per user.  
+
+- 🎨 **UI/UX Modern**  
+  - Desain baru dengan **Forui** library.  
+  - Tampilan lebih clean dan konsisten.  
+
+- ⚙️ **Integrasi dengan Supabase**  
+  - Data absensi tersimpan di **Supabase Database**.  
+  - Akses API untuk CRUD data absensi.  
+
+---
+
+## 🛠️ Tech Stack  
+
+- **Framework**: Flutter  
+- **Backend**: Supabase (Database + Auth)  
+- **UI Library**: Forui  
+- **Export Laporan**: PDF Generator  
+
+---
