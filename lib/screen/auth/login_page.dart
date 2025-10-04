@@ -1,4 +1,4 @@
-import 'package:admin_abzenzee/screen/pages/main_dashboard.dart';
+import 'package:admin_abzenzee/screen/pages/template/sidebar.dart';
 import 'package:flutter/material.dart';
 import 'package:forui/forui.dart';
 import 'package:lottie/lottie.dart';
@@ -55,7 +55,6 @@ class _LoginPageState extends State<LoginPage> {
                   const FTextField.email(
                     label: Text('Email'),
                     hint: 'john@doe.com',
-                    error: Text('Invalid email address'),
                   ),
                   const SizedBox(height: 16),
                   FTextField.password(
@@ -80,9 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                     onPress: () {
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => MainDashboard(),
-                        ),
+                        MaterialPageRoute(builder: (context) => Sidebar()),
                       );
                     },
                     child: const Text('Login'),
