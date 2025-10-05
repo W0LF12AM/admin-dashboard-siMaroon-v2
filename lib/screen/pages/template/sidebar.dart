@@ -238,7 +238,9 @@ class _SidebarState extends State<Sidebar> {
         ],
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 14),
+        padding: EdgeInsets.all(
+          MediaQuery.sizeOf(context).width < 800 ? 8 : 16,
+        ),
         child: IndexedStack(
           index: selectedIndex ?? 0,
           children: [
