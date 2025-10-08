@@ -1,3 +1,5 @@
+import 'package:admin_abzenzee/widget/select_dropdown.dart';
+import 'package:admin_abzenzee/widget/select_menu_tile.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
@@ -65,6 +67,24 @@ class _BarChartSample2State extends State<BarChartSample2> {
                 fontWeight: FontWeight.bold,
                 decoration: TextDecoration.none,
               ),
+            ),
+            Row(
+              children: [
+                SelectPage(),
+                Expanded(
+                  child: Wrap(
+                    alignment: WrapAlignment.end,
+                    spacing: 16,
+                    runSpacing: 4,
+                    children: [
+                      _buildLegendItem(masukBarColor, 'Masuk'),
+                      _buildLegendItem(sakitBarColor, 'Sakit'),
+                      _buildLegendItem(izinBarColor, 'Izin'),
+                      _buildLegendItem(alphaBarColor, 'Alpha'),
+                    ],
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: 20),
             Expanded(
@@ -244,4 +264,30 @@ class _BarChartSample2State extends State<BarChartSample2> {
       ],
     );
   }
+}
+
+Widget _buildLegendItem(Color color, String label) {
+  return Row(
+    mainAxisSize: MainAxisSize.min,
+    children: [
+      Container(
+        width: 14,
+        height: 14,
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(3),
+        ),
+      ),
+      const SizedBox(width: 6),
+      Text(
+        label,
+        style: const TextStyle(
+          color: Colors.black87,
+          fontSize: 13,
+          decoration: TextDecoration.none,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+    ],
+  );
 }

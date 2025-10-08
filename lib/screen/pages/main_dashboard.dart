@@ -11,10 +11,30 @@ class MainDashboard extends StatefulWidget {
 }
 
 final List<Map<String, dynamic>> dashboardItems = [
-  {'title': 'masuk', 'icon': FIcons.logIn, 'data': 100},
-  {'title': 'izin', 'icon': FIcons.clock, 'data': 20},
-  {'title': 'sakit', 'icon': FIcons.thermometer, 'data': 50},
-  {'title': 'alpha', 'icon': FIcons.userX, 'data': 12},
+  {
+    'title': 'Masuk',
+    'icon': FIcons.logIn,
+    'data': 100,
+    'desc': 'murid masuk hari ini',
+  },
+  {
+    'title': 'Izin',
+    'icon': FIcons.clock,
+    'data': 20,
+    'desc': 'murid izin hari ini',
+  },
+  {
+    'title': 'Sakit',
+    'icon': FIcons.thermometer,
+    'data': 50,
+    'desc': 'murid sakit hari ini',
+  },
+  {
+    'title': 'Alpha',
+    'icon': FIcons.userX,
+    'data': 12,
+    'desc': 'murid alpha hari ini',
+  },
 ];
 
 class _MainDashboardState extends State<MainDashboard> {
@@ -52,6 +72,7 @@ class _MainDashboardState extends State<MainDashboard> {
                           card_icon: item['icon'],
                           card_title: item['title'],
                           card_data: item['data'],
+                          card_description: item['desc'],
                         ),
                       ),
                   ],
