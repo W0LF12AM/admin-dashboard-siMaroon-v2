@@ -1,5 +1,11 @@
 import 'package:admin_abzenzee/widget/card_main_dashboard.dart';
-import 'package:admin_abzenzee/widget/fl_chart_bar2.dart';
+import 'package:admin_abzenzee/widget/const/default.dart';
+import 'package:admin_abzenzee/widget/legend_widget.dart';
+import 'package:admin_abzenzee/widget/template/fl_chart_bar6.dart';
+import 'package:admin_abzenzee/widget/template/fl_chart_line2.dart';
+import 'package:admin_abzenzee/widget/select_dropdown.dart';
+import 'package:admin_abzenzee/widget/template/fl_chart_bar2.dart';
+import 'package:admin_abzenzee/widget/user_activity_list.dart';
 import 'package:flutter/material.dart';
 import 'package:forui/forui.dart';
 
@@ -18,16 +24,16 @@ final List<Map<String, dynamic>> dashboardItems = [
     'desc': 'murid masuk hari ini',
   },
   {
-    'title': 'Izin',
-    'icon': FIcons.clock,
-    'data': 20,
-    'desc': 'murid izin hari ini',
-  },
-  {
     'title': 'Sakit',
     'icon': FIcons.thermometer,
     'data': 50,
     'desc': 'murid sakit hari ini',
+  },
+  {
+    'title': 'Izin',
+    'icon': FIcons.clock,
+    'data': 20,
+    'desc': 'murid izin hari ini',
   },
   {
     'title': 'Alpha',
@@ -49,6 +55,7 @@ class _MainDashboardState extends State<MainDashboard> {
         padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 16),
         child: SingleChildScrollView(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             spacing: 16,
             children: [
@@ -79,10 +86,107 @@ class _MainDashboardState extends State<MainDashboard> {
                 ),
               ),
 
-              SizedBox(
-                height: MediaQuery.sizeOf(context).height * 0.5,
-                child: BarChartSample2(),
+              //GRAFIK KEHADIRAN & AKTIVITAS USER----------------------------------------
+              Row(
+                spacing: 32,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                children: [
+                  //GRAFIK KEHADIRAN----------------------------------------------------
+                  Expanded(
+                    flex: 3,
+                    child: SizedBox(
+                      width: MediaQuery.sizeOf(context).width * 0.4,
+                      child: Container(
+                        child: Column(
+                          spacing: 16,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'Grafik Kehadiran',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                decoration: TextDecoration.none,
+                              ),
+                            ),
+
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SelectPage(),
+                                Wrap(
+                                  alignment: WrapAlignment.end,
+                                  spacing: 16,
+                                  runSpacing: 4,
+                                  children: [
+                                    BuildLegendItem(masukBarColor, 'Masuk'),
+                                    BuildLegendItem(sakitBarColor, 'Sakit'),
+                                    BuildLegendItem(izinBarColor, 'Izin'),
+                                    BuildLegendItem(alphaBarColor, 'Alpha'),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: MediaQuery.sizeOf(context).height * 0.3,
+                              child: BarChartSample2(),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  //--RECENT ACTIVITY USER--------------------------------------------------
+                  Expanded(
+                    flex: 2,
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        right: MediaQuery.sizeOf(context).width * 0.02,
+                      ),
+                      child: Container(
+                        width: MediaQuery.sizeOf(context).width * 0.3,
+                        decoration: BoxDecoration(
+                          color: Colors.black,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Column(
+                            spacing: 16,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Recent Activity User',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  decoration: TextDecoration.none,
+                                ),
+                              ),
+                              SizedBox(
+                                height: MediaQuery.sizeOf(context).height * 0.6,
+                                child: Container(
+                                  decoration: BoxDecoration(),
+                                  child: Column(children: [
+                                      
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
+
               //HALAMAN//------------------------------------------------------------
             ],
           ),

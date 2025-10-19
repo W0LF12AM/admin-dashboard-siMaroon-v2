@@ -1,5 +1,5 @@
-import 'package:admin_abzenzee/widget/select_dropdown.dart';
-import 'package:admin_abzenzee/widget/select_menu_tile.dart';
+import 'package:admin_abzenzee/widget/const/default.dart';
+
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
@@ -11,32 +11,24 @@ class BarChartSample2 extends StatefulWidget {
 }
 
 class _BarChartSample2State extends State<BarChartSample2> {
-  final double width = 14;
+  final double barWidth = 14;
 
   late List<BarChartGroupData> rawBarGroups;
   late List<BarChartGroupData> showingBarGroups;
 
   int touchedGroupIndex = -1;
 
-  // 🎨 Warna tema hitam-putih minimalis
-  final Color masukBarColor = const Color(0xFF1A1A1A);
-  final Color sakitBarColor = const Color(0xFF333333);
-  final Color izinBarColor = const Color(0xFF4D4D4D);
-  final Color alphaBarColor = const Color(0xFF808080);
-
-  final Color avgColor = const Color(
-    0xFFBDBDBD,
-  ); // warna rata-rata (abu sedang)
+  // warna rata-rata (abu sedang)
 
   @override
   void initState() {
     super.initState();
-    final barGroup1 = makeGroupData(0, 5, 12, 2, 1);
-    final barGroup2 = makeGroupData(1, 16, 12, 3, 0);
-    final barGroup3 = makeGroupData(2, 18, 5, 1, 2);
-    final barGroup4 = makeGroupData(3, 20, 16, 4, 1);
-    final barGroup5 = makeGroupData(4, 17, 6, 8, 3);
-    final barGroup6 = makeGroupData(5, 19, 1.5, 1, 1);
+    final barGroup1 = makeGroupData(0, 310, 120, 109, 9);
+    final barGroup2 = makeGroupData(1, 261, 211, 92, 11);
+    final barGroup3 = makeGroupData(2, 301, 108, 113, 30);
+    final barGroup4 = makeGroupData(3, 222, 89, 101, 5);
+    final barGroup5 = makeGroupData(4, 359, 89, 91, 74);
+    final barGroup6 = makeGroupData(5, 329, 105, 89, 47);
 
     rawBarGroups = [
       barGroup1,
@@ -51,46 +43,31 @@ class _BarChartSample2State extends State<BarChartSample2> {
 
   @override
   Widget build(BuildContext context) {
+    // final screenWidth = MediaQuery.sizeOf(context).width;
+    // final barWidth = (screenWidth * 0.015).clamp(6.0, 18.0);
+    // final barsSpace = barWidth * 0.4;
+
+    // showingBarGroups = [
+    //   makeGroupData(0, 5, 12, 2, 1, barWidth, barsSpace),
+    //   makeGroupData(1, 16, 12, 3, 0, barWidth, barsSpace),
+    //   makeGroupData(2, 18, 5, 1, 2, barWidth, barsSpace),
+    //   makeGroupData(3, 20, 16, 4, 1, barWidth, barsSpace),
+    //   makeGroupData(4, 17, 6, 8, 3, barWidth, barsSpace),
+    //   makeGroupData(5, 19, 1.5, 1, 1, barWidth, barsSpace),
+    // ];
+
     return AspectRatio(
-      aspectRatio: 2,
+      aspectRatio: 3,
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.only(right: 16, top: 16, bottom: 16),
         child: Column(
           spacing: 12,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            const Text(
-              'Grafik Kehadiran',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                decoration: TextDecoration.none,
-              ),
-            ),
-            Row(
-              children: [
-                SelectPage(),
-                Expanded(
-                  child: Wrap(
-                    alignment: WrapAlignment.end,
-                    spacing: 16,
-                    runSpacing: 4,
-                    children: [
-                      _buildLegendItem(masukBarColor, 'Masuk'),
-                      _buildLegendItem(sakitBarColor, 'Sakit'),
-                      _buildLegendItem(izinBarColor, 'Izin'),
-                      _buildLegendItem(alphaBarColor, 'Alpha'),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
             Expanded(
               child: BarChart(
                 BarChartData(
-                  maxY: 20,
+                  maxY: 400,
                   barTouchData: BarTouchData(
                     touchTooltipData: BarTouchTooltipData(
                       tooltipRoundedRadius: 8,
@@ -174,7 +151,7 @@ class _BarChartSample2State extends State<BarChartSample2> {
                       sideTitles: SideTitles(
                         showTitles: true,
                         reservedSize: 28,
-                        interval: 5,
+                        // interval: 200,
                         getTitlesWidget: leftTitles,
                       ),
                     ),
@@ -234,60 +211,34 @@ class _BarChartSample2State extends State<BarChartSample2> {
     double alpha,
   ) {
     return BarChartGroupData(
-      barsSpace: 6,
+      barsSpace: 3,
       x: x,
       barRods: [
         BarChartRodData(
           toY: masuk,
           color: masukBarColor,
-          width: width,
+          width: barWidth,
           borderRadius: BorderRadius.circular(4),
         ),
         BarChartRodData(
           toY: sakit,
           color: sakitBarColor,
-          width: width,
+          width: barWidth,
           borderRadius: BorderRadius.circular(4),
         ),
         BarChartRodData(
           toY: izin,
           color: izinBarColor,
-          width: width,
+          width: barWidth,
           borderRadius: BorderRadius.circular(4),
         ),
         BarChartRodData(
           toY: alpha,
           color: alphaBarColor,
-          width: width,
+          width: barWidth,
           borderRadius: BorderRadius.circular(4),
         ),
       ],
     );
   }
-}
-
-Widget _buildLegendItem(Color color, String label) {
-  return Row(
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      Container(
-        width: 14,
-        height: 14,
-        decoration: BoxDecoration(
-          color: color,
-          borderRadius: BorderRadius.circular(3),
-        ),
-      ),
-      const SizedBox(width: 6),
-      Text(
-        label,
-        style: const TextStyle(
-          color: Colors.black87,
-          fontSize: 13,
-          decoration: TextDecoration.none,
-          fontWeight: FontWeight.w500,
-        ),
-      ),
-    ],
-  );
 }
